@@ -27,6 +27,18 @@
     //#include "lwip/err.h"
     //#include "lwip/sys.h"
 
+#include <Arduino.h>
+#include <ArduinoJson.h>
+#include "mqtt_handler.h"
+
+#include <WiFi.h>
+#include <PubSubClient.h>
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "driver/ledc.h"
+
+
 
 #define OUT_ABobinador   19
 #define OUT_BBobinador   18
@@ -148,7 +160,9 @@ typedef struct __data_tensor_t
 #define AWG_26  2.27
 #define AWG_25  2.02
 
-void FiltrarADC(int16_t *lastValue);
+//void FiltrarADC(int16_t *lastValue);
+void Task_comMQTT(void *par);
+void InitHardware();
 
 
 #endif // !COMMON_H
